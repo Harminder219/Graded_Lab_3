@@ -1,0 +1,51 @@
+package com.greatlearning.findpairsum;
+
+public class BstPairSum {
+
+	private class Node {
+		
+		int val;
+
+		Node left;
+		
+		Node right;
+
+	}
+
+	private Node createNode(int ele) {
+
+		
+		Node temp = new Node();
+		
+		temp.val = ele;
+		
+		return temp;
+
+	}
+	
+	void inplace(Node root)
+	{
+		if (root==null) {
+			
+			return;
+		}
+		
+		inplace(root.left);
+		System.out.print(root.val+" ");
+		inplace(root.right);
+		
+	}
+
+	public BstPairSum() {
+
+		Node newNode=createNode(40);
+		newNode.left=createNode(20);
+		newNode.right=createNode(60);
+		newNode.left.left=createNode(10);
+		newNode.left.right=createNode(30);
+		newNode.right.left=createNode(50);
+		newNode.right.right=createNode(70);
+		inplace(newNode);
+	}
+
+}

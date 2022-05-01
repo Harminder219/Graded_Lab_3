@@ -1,0 +1,101 @@
+package com.greatlearning.findpairsum;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class BstPairSum {
+
+	ArrayList<Integer> eleList=new ArrayList<>();
+	
+	private class Node {
+		
+		int val;
+
+		Node left;
+		
+		Node right;
+
+	}
+
+	private Node createNode(int ele) {
+
+		
+		Node temp = new Node();
+		
+		temp.val = ele;
+		
+		return temp;
+
+	}
+	
+	void inplace(Node root)
+	{
+		if (root==null) {
+			
+			return;
+		}
+		
+		inplace(root.left);
+		
+		eleList.add(root.val);
+		
+		inplace(root.right);
+		
+	}
+	
+	void findPairSum(int key)
+	{
+		
+	int start=0;
+	int end=eleList.size()-1;
+	
+	for(int i=0;i<eleList.size();i++)
+	{
+		if (eleList.get(start)+eleList.get(end)==key) {
+			
+			System.out.print("Pair is "+"("+eleList.get(start)+","+eleList.get(end)+")");
+			return;
+		}
+		
+		else if(eleList.get(start)+eleList.get(end) < key) {
+			
+			start+=1;
+		}
+		else {
+			
+			end-=1;
+			
+		}
+		
+	}
+	System.out.print("Nodes are not found.");
+	return;
+		
+	}
+	
+	
+
+	public BstPairSum() {
+
+		Node newNode=createNode(40);
+		
+		newNode.left=createNode(20);
+		
+		newNode.right=createNode(60);
+		
+		newNode.left.left=createNode(10);
+		
+		newNode.left.right=createNode(30);
+		
+		newNode.right.left=createNode(50);
+		
+		newNode.right.right=createNode(70);
+		
+		inplace(newNode);
+	    
+		findPairSum(130);
+
+		
+	}
+
+}

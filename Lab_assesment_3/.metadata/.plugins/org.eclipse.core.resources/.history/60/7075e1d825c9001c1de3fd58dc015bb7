@@ -1,0 +1,88 @@
+package com.greatlearning.balancedbrackets;
+
+import java.util.Stack;
+
+public class BalancedBrackets {
+
+	Stack<Character> charStack = new Stack<>();
+
+	private boolean checkForBalancedBrackets(String inpString) {
+		for (int i = 0; i < inpString.length(); i++) {
+
+			if (inpString.charAt(i) == '(' || inpString.charAt(i) == '[' || inpString.charAt(i) == '{') {
+
+				charStack.push(inpString.charAt(i));
+				continue;
+
+			} else {
+				char getChar = charStack.pop();
+
+				if (getChar == '{') {
+					if (inpString.charAt(i) == '}') {
+
+						continue;
+					} 
+					else {
+
+						return false;
+						
+					}
+				}
+				else if (getChar == '[') {
+					
+					if (inpString.charAt(i) == ']') {
+
+						continue;
+					
+					}
+					else {
+						
+						return false;
+
+					}
+				} 
+				else if (getChar == '(') {
+				
+					if (inpString.charAt(i) == ')') {
+
+						continue;
+				
+					} else {
+						
+						return false;
+					
+					}
+				} 
+				
+				else {
+
+					return false;
+
+				}
+
+			}
+
+		}
+
+		return true;
+
+	}
+
+	public BalancedBrackets() {
+
+		String inputString = "([[{}]])";
+
+		boolean out = checkForBalancedBrackets(inputString);
+        
+		if(out)
+		{
+			System.out.print("\nThe entered String has Balanced Brackets\n");
+		}
+		else {
+			
+			System.out.print("\nThe entered String s do not contain Balanced Brackets\n");
+		}
+		
+	}
+
+}
